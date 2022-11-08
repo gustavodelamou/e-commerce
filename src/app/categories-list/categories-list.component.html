@@ -1,0 +1,94 @@
+<div class="container mt-5">
+  <div class="text-right mb-5">
+    <button class="btn btn-success" routerLink="/create-category">Creer une Categorie</button>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Description</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="categories">
+      <tr *ngFor="let category of categories">
+        <td scope="row">{{category.id }}</td>
+        <td colspan="2">{{ category.name }}</td>
+        <td colspan="2">{{ category.description }}</td>
+        <td>
+          <div class="btn-group btn-group-sm">
+            <button class="btn btn-primary btn-sm" (click)="getCategory(category.id)" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">Detail</button>
+            <!-- Button trigger modal -->
+
+            <button class="btn btn-secondary btn-sm" (click)="getCategory(category.id)" data-bs-toggle="modal"
+              data-bs-target="#editCategory">Editer</button>
+
+            <button class="btn btn-danger btn-sm" (click)="onDelete(category.id)">Supprimer</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<!-- Modal for Viewing -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Information de la categorie</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="category">
+        <div class="row">
+          <div class="col-lg-4">Nom</div>
+          <div class="col-lg-8">{{ category.name }}</div>
+          <div class="col-lg-4">Description</div>
+          <div class="col-lg-8">{{ category.description }}</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Editing -->
+<div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="editCategoryLabal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" *ngIf="category">
+      <form action="" [formGroup]="form" (ngSubmit)="onSubmit(category.id)" method="POST">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="editCategoryLabal">Modification</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="">Nom</label>
+                <input type="text" [value]="category.name" id="name" formControlName="name" class="form-control form-control-lg">
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="">Description</label>
+                <textarea type="text" [value]="category.description" id="description" formControlName="description"
+                  class="form-control form-control-lg"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+          <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Modifier</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

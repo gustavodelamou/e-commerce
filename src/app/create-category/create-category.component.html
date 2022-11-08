@@ -1,0 +1,37 @@
+<div class="container">
+  <form action="" [formGroup]="form" (ngSubmit)="onSubmit()" method="POST">
+
+    <div class="row">
+      <div class="col-lg-12 m-lg-5 mt-lg-5">
+        <div class="card card-small" style="width: 30rem;">
+          <div class="card-header">
+            <div class="card-title">
+              <h4>Creer une categorie</h4>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="">Nom</label>
+                  <input type="text" id="name" formControlName="name" class="form-control form-control-lg">
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group">
+                  <label for="">Description</label>
+                  <textarea type="text" id="description" formControlName="description" class="form-control form-control-lg"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Enregistrer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+  <!-- {{ name.value }} -->
+</div>

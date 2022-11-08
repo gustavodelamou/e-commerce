@@ -1,0 +1,15 @@
+{
+  "categories": [
+    {
+      "name": "Hommes",
+      "description": "Description hommes",
+      "id": 2
+    },
+    {
+      "name": "Femme",
+      "description": "Description femme",
+      "id": 3
+    }
+  ],
+  "products": []
+}
